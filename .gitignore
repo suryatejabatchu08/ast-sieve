@@ -3,3 +3,9 @@ __pycache__/
 *.pyc
 .env
 .ast_sieve_cache/
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
