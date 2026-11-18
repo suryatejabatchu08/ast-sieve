@@ -1,15 +1,21 @@
+[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+
 # AST-Sieve
 
 An architecture-agnostic CLI agent that finds **security issues, AI slop, coding gaps and loose
 ends** in any repository, then fixes the safe ones and **proves each fix before it ships**.
 
-```
-walker -> tree-sitter parse -> analyzers -> findings -> (optional LLM critic) -> fixers
-                                                                  \-> verification loop -> patch
+```mermaid
+flowchart LR
+    A[walker] --> B[tree-sitter parse] --> C[analyzers] --> D[findings]
+    D --> E[LLM critic - optional] --> F[fixers] --> G[verification loop] --> H[patch]
 ```
 
 Design in one line: *deterministic analyzers find, an optional LLM can only refute, and no patch
 ships unless it applies, re-parses, removes the finding and adds none.*
+
+[Quickstart](#quickstart-offline-no-api-key) · [What it detects](#what-it-detects) · [Results](#results) · [Limitations](#known-limitations-honest-scope) · [Development](#development)
 
 ## Quickstart (offline, no API key)
 
@@ -18,7 +24,8 @@ pip install -e ".[dev]"
 ast-sieve scan demo-messy-repo          # rich table of findings
 ast-sieve scan demo-messy-repo --format sarif > results.sarif
 ast-sieve fix demo-messy-repo           # dry run: prints the verified patch
-ast-sieve fix demo-messy-repo --apply   # writes it
+cp -r demo-messy-repo ../demo-copy      # --apply edits files in place, so fix a copy
+ast-sieve fix ../demo-copy --apply      # writes it
 python scripts/evaluate.py              # precision / recall on the seeded benchmark
 ```
 
@@ -35,7 +42,7 @@ Everything above works with no network and no API key. Optional extras:
 
 Example with Groq:
 
-```
+```bash
 AST_SIEVE_LLM_BASE_URL=https://api.groq.com/openai/v1 AST_SIEVE_LLM_MODEL=openai/gpt-oss-120b AST_SIEVE_LLM_KEY=... ast-sieve scan . --critic
 ```
 
@@ -97,6 +104,8 @@ finding not removed, new finding introduced).
 **Self-audit**: `ast-sieve scan . --exclude tests,demo-messy-repo` reports 0 findings at any
 confidence on this repository, with no suppressions. See [SELF_AUDIT.md](SELF_AUDIT.md).
 
+Step-by-step commands to see everything: [WALKTHROUGH.md](WALKTHROUGH.md).
+
 ## Known limitations (honest scope)
 
 - **Taint is heuristic and Python-only**: assignment propagation within a function plus one
@@ -129,7 +138,7 @@ docker build -t ast-sieve . && docker run --rm -v "$PWD:/code" ast-sieve scan /c
 
 ## Layout
 
-```
+```text
 ast_sieve/
   cli.py  engine.py  parser.py  walker.py  callgraph.py  patching.py  report.py  critic.py  schemas.py
   analyzers/ gaps.py slop.py unused.py security.py taint.py phantom_deps.py
