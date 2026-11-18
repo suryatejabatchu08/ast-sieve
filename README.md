@@ -144,8 +144,6 @@ docker build -t ast-sieve . && docker run --rm -v "$PWD:/code" ast-sieve scan /c
 
 ## Layout
 
-## Project Structure
-
 ```text
 ast-sieve/
 ├── ast_sieve/
