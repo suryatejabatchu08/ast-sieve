@@ -1,0 +1,8 @@
+{
+  "title": "AST-Sieve: Verified Code Triage for Security, Slop and Gaps",
+  "description": "CLI agent that parses any repo with tree-sitter and finds security issues, AI slop, coding gaps and loose ends using deterministic analyzers. An optional LLM can only refute findings. Auto-fixes ship only if they re-parse, remove the finding and add none.",
+  "track": "AI triage",
+  "repo": "https://github.com/suryatejabatchu08/ast-sieve",
+  "demo_video": "",
+  "live_link": ""
+}
