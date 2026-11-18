@@ -1,6 +1,6 @@
 {
   "language": "python",
   "install": "python -m pip install -e \".[dev]\"",
-  "test": "python -m pytest",
+  "test": "python -m pytest -q",
   "start": "ast-sieve --help"
 }
