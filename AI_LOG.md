@@ -73,7 +73,11 @@ Tool: Claude Code. All sessions are exported to /ai-logs.
 ### 8. Verification and what is NOT verified
 - Verified by running: 58 tests pass, 92% coverage, ruff and mypy clean, vulture clean, 0 findings
   when scanning the repo itself, clean-venv `pip install .` works, `--staged` and `--online` work.
+- The critic's unit tests use a fake client. I also ran it once against `openai/gpt-oss-120b` on
+  Groq: my first attempt used the wrong base URL, so requests went to OpenAI and failed silently
+  (the critic fails open, so the output looked normal). After setting the Groq URL, a direct call
+  returned valid JSON and the `--critic` scan dropped 0 of 35 findings. No accuracy evaluation.
 - **Not verified:** the Dockerfile (no Docker in the sandbox), the GitHub Actions workflow (never
-  ran on GitHub), and the LLM critic against a real model (tested only with a fake client).
+  ran on GitHub).
 - The benchmark was written alongside the analyzers, so its 1.00 scores are regression guards,
   not an independent accuracy measurement. This is stated in README and BENCHMARK.md.

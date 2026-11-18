@@ -33,6 +33,12 @@ Everything above works with no network and no API key. Optional extras:
 | `--min-confidence 0.6` | Hide low-confidence findings (default 0.4) |
 | `--fail-on high` | Exit code 1 threshold: `low`, `medium` (default), `high`, `never` |
 
+Example with Groq:
+
+```
+AST_SIEVE_LLM_BASE_URL=https://api.groq.com/openai/v1 AST_SIEVE_LLM_MODEL=openai/gpt-oss-120b AST_SIEVE_LLM_KEY=... ast-sieve scan . --critic
+```
+
 ## What it detects
 
 | Rule | Finds | Languages |
@@ -103,7 +109,9 @@ confidence on this repository, with no suppressions. See [SELF_AUDIT.md](SELF_AU
   commented-out code. No taint, no unused-import detection, no Go dependency check.
 - **GAP003 can flag intentional smoke tests** that only check that nothing raises.
 - **The LLM critic is single-shot** (finding plus surrounding code in, verdict out). It is not a
-  tool-using agent loop, it can only remove findings, and it fails open on any error.
+  tool-using agent loop, it can only remove findings, and it fails open on any error. It was run
+  once against `openai/gpt-oss-120b` on Groq (OpenAI-compatible endpoint) on the demo repo
+  (dropped 0 of 35 findings); its accuracy has not been evaluated.
 - Registry checks need network; results are cached per run. A benchmark package that does not
   exist today could be registered later, which would change the online benchmark result.
 
