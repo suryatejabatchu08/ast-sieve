@@ -1,10 +1,16 @@
-[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+<h1 align="center">AST-Sieve</h1>
 
-# AST-Sieve
+<p align="center">
+  <a href="https://github.com/suryatejabatchu08/ast-sieve/actions">
+    <img src="https://github.com/suryatejabatchu08/ast-sieve/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI Status">
+  </a>
+  <img src="https://img.shields.io/badge/python-3.11%2B-blue" alt="Python 3.11+">
+</p>
 
+<p align="center">
 An architecture-agnostic CLI agent that finds **security issues, AI slop, coding gaps and loose
 ends** in any repository, then fixes the safe ones and **proves each fix before it ships**.
+</p>
 
 ```mermaid
 flowchart LR
@@ -138,14 +144,50 @@ docker build -t ast-sieve . && docker run --rm -v "$PWD:/code" ast-sieve scan /c
 
 ## Layout
 
+## Project Structure
+
 ```text
-ast_sieve/
-  cli.py  engine.py  parser.py  walker.py  callgraph.py  patching.py  report.py  critic.py  schemas.py
-  analyzers/ gaps.py slop.py unused.py security.py taint.py phantom_deps.py
-  languages/ python/ javascript/ typescript/ go/   (mapping.yaml each)
-demo-messy-repo/   seeded benchmark + expected.json
-scripts/evaluate.py
-tests/  docs/  AI_LOG.md
+ast-sieve/
+├── ast_sieve/
+│   ├── cli.py
+│   ├── engine.py
+│   ├── parser.py
+│   ├── walker.py
+│   ├── callgraph.py
+│   ├── patching.py
+│   ├── report.py
+│   ├── critic.py
+│   ├── schemas.py
+│   │
+│   ├── analyzers/
+│   │   ├── gaps.py
+│   │   ├── slop.py
+│   │   ├── unused.py
+│   │   ├── security.py
+│   │   ├── taint.py
+│   │   └── phantom_deps.py
+│   │
+│   └── languages/
+│       ├── python/
+│       │   └── mapping.yaml
+│       ├── javascript/
+│       │   └── mapping.yaml
+│       ├── typescript/
+│       │   └── mapping.yaml
+│       └── go/
+│           └── mapping.yaml
+│
+├── demo-messy-repo/
+│   ├── seeded benchmark
+│   └── expected.json
+│
+├── scripts/
+│   └── evaluate.py
+│
+├── tests/
+├── docs/
+├── AI_LOG.md
+└── README.md
 ```
 
 ## AI usage
