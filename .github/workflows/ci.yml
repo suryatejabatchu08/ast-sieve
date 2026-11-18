@@ -1,0 +1,20 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: ruff check ast_sieve tests scripts
+      - run: mypy ast_sieve
+      - run: pytest
+      - name: Benchmark gate
+        run: python scripts/evaluate.py --min-recall 0.9 --min-precision 0.9
+      - name: Dogfood
+        run: ast-sieve scan . --exclude tests,demo-messy-repo --fail-on low
+      - name: SARIF
+        run: ast-sieve scan . --exclude tests,demo-messy-repo --format sarif --fail-on never > results.sarif
