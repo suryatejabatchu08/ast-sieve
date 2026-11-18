@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 from collections.abc import Sequence
 from concurrent.futures import ThreadPoolExecutor
-from typing import Any, Protocol
+from typing import Any, Protocol, cast
 
 from ast_sieve.parser import ParsedFile
 from ast_sieve.schemas import Finding
@@ -33,7 +33,7 @@ def make_client(base_url: str | None, api_key: str) -> ChatClient:
     """Create an OpenAI-compatible client (requires the optional 'llm' extra)."""
     from openai import OpenAI
 
-    return OpenAI(base_url=base_url, api_key=api_key)
+    return cast("ChatClient", OpenAI(base_url=base_url, api_key=api_key))
 
 
 def _snippet(pf: ParsedFile, finding: Finding) -> str:
