@@ -1,0 +1,19 @@
+language: go
+grammar: go
+extensions: [".go"]
+function_nodes: [function_declaration, method_declaration]
+class_nodes: []
+identifier_nodes: [identifier, field_identifier]
+block_nodes: [statement_list]
+terminal_nodes: [return_statement, break_statement, continue_statement, goto_statement]
+import_nodes: []
+code_nodes: [call_expression, assignment_statement, short_var_declaration, return_statement, if_statement, for_statement]
+comment_prefix: "//"
+snippet_wrapper: "package p\nfunc _() {\n{code}\n}"
+entrypoints: [main, init]
+entrypoint_prefixes: [Test, Benchmark, Example]
+line_rules:
+  - {rule: SEC002, severity: high, confidence: 0.95, pattern: 'InsecureSkipVerify\s*:\s*true', message: "TLS certificate verification disabled"}
+  - {rule: SEC002, severity: medium, confidence: 0.7, pattern: '\b(?:md5|sha1)\.(?:New|Sum)\(', message: "Weak hash algorithm (MD5 or SHA1)"}
+  - {rule: SEC003, severity: high, confidence: 0.85, pattern: 'exec\.Command\(\s*"(?:sh|bash|cmd)"\s*,\s*"(?:-c|/c)"', message: "Shell command execution via exec.Command"}
+  - {rule: SEC004, severity: high, confidence: 0.8, pattern: '(?:Query|Exec)\w*\(\s*fmt\.Sprintf\(', message: "SQL built with fmt.Sprintf"}

@@ -1,0 +1,14 @@
+language: python
+grammar: python
+extensions: [".py"]
+function_nodes: [function_definition]
+class_nodes: [class_definition]
+identifier_nodes: [identifier]
+block_nodes: [block, module]
+terminal_nodes: [return_statement, raise_statement, break_statement, continue_statement]
+import_nodes: [import_statement, import_from_statement]
+code_nodes: [call, assignment, augmented_assignment, import_statement, import_from_statement, return_statement, function_definition, if_statement, for_statement, while_statement]
+comment_prefix: "#"
+entrypoints: [main]
+entrypoint_prefixes: [test]
+line_rules: []

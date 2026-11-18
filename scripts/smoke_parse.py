@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Throwaway script to test tree-sitter API with Python, JS, and Go snippets."""
 
-from tree_sitter_language_pack import get_parser, get_language
+from tree_sitter_language_pack import get_language, get_parser
 
 
 def test_parser(lang_name: str, code: str, node_type: str) -> list[str]:
     """Parse code and extract top-level function names."""
     try:
         parser = get_parser(lang_name)
-        language = get_language(lang_name)
+        get_language(lang_name)
         tree = parser.parse(code.encode())
         root = tree.root_node
 

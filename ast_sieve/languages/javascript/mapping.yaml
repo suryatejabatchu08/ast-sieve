@@ -1,0 +1,22 @@
+language: javascript
+grammar: javascript
+extensions: [".js", ".jsx", ".mjs", ".cjs"]
+function_nodes: [function_declaration, method_definition, arrow_function, function_expression, generator_function_declaration]
+class_nodes: [class_declaration]
+identifier_nodes: [identifier, property_identifier, shorthand_property_identifier]
+block_nodes: [statement_block, program]
+terminal_nodes: [return_statement, throw_statement, break_statement, continue_statement]
+import_nodes: [import_statement]
+code_nodes: [call_expression, assignment_expression, variable_declarator, import_statement, return_statement, function_declaration, if_statement, for_statement, while_statement]
+comment_prefix: "//"
+entrypoints: [main, constructor]
+entrypoint_prefixes: [test]
+line_rules:
+  - {rule: SEC003, severity: high, confidence: 0.9, pattern: '\beval\s*\(', message: "Dangerous call: eval()"}
+  - {rule: SEC003, severity: high, confidence: 0.85, pattern: 'new\s+Function\s*\(', message: "Dangerous call: new Function()"}
+  - {rule: SEC003, severity: medium, confidence: 0.8, pattern: '\.innerHTML\s*=|document\.write\s*\(', message: "DOM injection sink: innerHTML or document.write"}
+  - {rule: SEC003, severity: high, confidence: 0.8, pattern: 'child_process\.exec(?:Sync)?\s*\(|\bexecSync\s*\(', message: "Shell command execution via child_process"}
+  - {rule: SEC002, severity: high, confidence: 0.95, pattern: 'rejectUnauthorized\s*:\s*false', message: "TLS certificate verification disabled"}
+  - {rule: SEC002, severity: high, confidence: 0.9, pattern: 'NODE_TLS_REJECT_UNAUTHORIZED\s*=\s*[''"]?0', message: "TLS certificate verification disabled"}
+  - {rule: SEC002, severity: medium, confidence: 0.7, pattern: 'createHash\(\s*[''"](?:md5|sha1)[''"]', message: "Weak hash algorithm (MD5 or SHA1)"}
+  - {rule: SEC004, severity: high, confidence: 0.8, pattern: '\.(?:query|execute)\(\s*(?:`[^`]*\$\{|[''"][^''"]*[''"]\s*\+)', message: "SQL built from string concatenation or interpolation"}

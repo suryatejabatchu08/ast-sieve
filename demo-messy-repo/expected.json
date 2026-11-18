@@ -1,0 +1,217 @@
+{
+  "note": "Ground truth for the seeded issues; clean_* files and everything not listed must not be reported at or above min confidence.",
+  "findings": [
+    {
+      "file": "python/config.py",
+      "rule": "SEC001",
+      "line": 6,
+      "anchor": "api_secret = \"kT9x"
+    },
+    {
+      "file": "python/config.py",
+      "rule": "SEC002",
+      "line": 11,
+      "anchor": "hashlib.md5("
+    },
+    {
+      "file": "python/handlers.py",
+      "rule": "SEC003",
+      "line": 17,
+      "anchor": "os.system(command)"
+    },
+    {
+      "file": "python/handlers.py",
+      "rule": "TNT001",
+      "line": 17,
+      "anchor": "os.system(command)"
+    },
+    {
+      "file": "python/handlers.py",
+      "rule": "SEC004",
+      "line": 21,
+      "anchor": "cursor.execute(\"SELECT * FROM users"
+    },
+    {
+      "file": "python/handlers.py",
+      "rule": "TNT001",
+      "line": 29,
+      "anchor": "return find_user(cursor, uid)"
+    },
+    {
+      "file": "python/handlers.py",
+      "rule": "SEC002",
+      "line": 33,
+      "anchor": "requests.get(url, verify=False"
+    },
+    {
+      "file": "python/handlers.py",
+      "rule": "GAP002",
+      "line": 34,
+      "anchor": "requests.post(url, json=payload)"
+    },
+    {
+      "file": "python/handlers.py",
+      "rule": "SEC003",
+      "line": 38,
+      "anchor": "yaml.load(text)"
+    },
+    {
+      "file": "python/handlers.py",
+      "rule": "DEP002",
+      "line": 5,
+      "anchor": "import fastapi_secure_utils",
+      "online_rule": "DEP001"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "SLP005",
+      "line": 10,
+      "anchor": "def validate_token"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "SLP005",
+      "line": 13,
+      "anchor": "def encrypt_payload"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "SLP005",
+      "line": 16,
+      "anchor": "def export_pdf"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "SLP001",
+      "line": 28,
+      "anchor": "def parse_invoices"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "GAP001",
+      "line": 40,
+      "anchor": "except OSError:"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "SLP002",
+      "line": 45,
+      "anchor": "def _legacy_export"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "SLP002",
+      "line": 55,
+      "anchor": "print(\"done\")"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "SLP003",
+      "line": 2,
+      "anchor": "import json"
+    },
+    {
+      "file": "python/services.py",
+      "rule": "SLP004",
+      "line": 58,
+      "anchor": "# old_total = compute_total(values)"
+    },
+    {
+      "file": "python/migration.py",
+      "rule": "SLP006",
+      "line": 5,
+      "anchor": "# TODO: handle rollbacks"
+    },
+    {
+      "file": "python/test_services.py",
+      "rule": "GAP003",
+      "line": 4,
+      "anchor": "def test_parse_orders_runs"
+    },
+    {
+      "file": "python/test_services.py",
+      "rule": "GAP003",
+      "line": 8,
+      "anchor": "def test_always_true"
+    },
+    {
+      "file": "js/server.js",
+      "rule": "DEP002",
+      "line": 3,
+      "anchor": "require('left-pad-pro')",
+      "online_rule": "DEP001"
+    },
+    {
+      "file": "js/server.js",
+      "rule": "SEC001",
+      "line": 6,
+      "anchor": "const apiToken"
+    },
+    {
+      "file": "js/server.js",
+      "rule": "SLP002",
+      "line": 7,
+      "anchor": "const unusedHelper"
+    },
+    {
+      "file": "js/server.js",
+      "rule": "SLP005",
+      "line": 9,
+      "anchor": "function sendEmail"
+    },
+    {
+      "file": "js/server.js",
+      "rule": "SEC003",
+      "line": 12,
+      "anchor": "return eval(input)"
+    },
+    {
+      "file": "js/server.js",
+      "rule": "GAP001",
+      "line": 18,
+      "anchor": "} catch (err) {"
+    },
+    {
+      "file": "js/server.js",
+      "rule": "SEC002",
+      "line": 23,
+      "anchor": "rejectUnauthorized: false"
+    },
+    {
+      "file": "go/main.go",
+      "rule": "SEC001",
+      "line": 10,
+      "anchor": "var apiKey"
+    },
+    {
+      "file": "go/main.go",
+      "rule": "SLP005",
+      "line": 14,
+      "anchor": "func (s Service) Notify"
+    },
+    {
+      "file": "go/main.go",
+      "rule": "SLP002",
+      "line": 16,
+      "anchor": "func unusedHelper"
+    },
+    {
+      "file": "go/main.go",
+      "rule": "SEC003",
+      "line": 21,
+      "anchor": "exec.Command(\"sh\""
+    },
+    {
+      "file": "go/main.go",
+      "rule": "SEC002",
+      "line": 26,
+      "anchor": "InsecureSkipVerify"
+    },
+    {
+      "file": "go/main.go",
+      "rule": "GAP001",
+      "line": 32,
+      "anchor": "if err != nil {"
+    }
+  ]
+}
