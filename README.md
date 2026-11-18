@@ -8,8 +8,8 @@
 </p>
 
 <p align="center">
-An architecture-agnostic CLI agent that finds **security issues, AI slop, coding gaps and loose
-ends** in any repository, then fixes the safe ones and **proves each fix before it ships**.
+An architecture-agnostic CLI agent that finds <b>security issues, AI slop, coding gaps and loose
+ends</b> in any repository, then fixes the safe ones and <b>proves each fix before it ships</b>.
 </p>
 
 ```mermaid
