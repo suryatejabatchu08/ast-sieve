@@ -77,7 +77,11 @@ Tool: Claude Code. All sessions are exported to /ai-logs.
   Groq: my first attempt used the wrong base URL, so requests went to OpenAI and failed silently
   (the critic fails open, so the output looked normal). After setting the Groq URL, a direct call
   returned valid JSON and the `--critic` scan dropped 0 of 35 findings. No accuracy evaluation.
-- **Not verified:** the Dockerfile (no Docker in the sandbox), the GitHub Actions workflow (never
-  ran on GitHub).
+- The GitHub Actions workflow initially failed at mypy: `openai` is an optional extra, so CI saw it
+  as untyped and flagged a returned `Any` (it passed locally because I had `openai` installed).
+  Fixed with a `cast`; the workflow then passed on GitHub (lint, mypy, tests, benchmark gate,
+  self-scan, SARIF).
+- **Not verified:** the Dockerfile has never been built (no Docker available while developing, and
+  CI does not build it).
 - The benchmark was written alongside the analyzers, so its 1.00 scores are regression guards,
   not an independent accuracy measurement. This is stated in README and BENCHMARK.md.
