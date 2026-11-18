@@ -17,4 +17,4 @@
    and nothing new appears. `--apply` writes the files.
 8. **Numbers**: `python scripts/evaluate.py` (35 seeded issues), then
    `ast-sieve scan . --exclude tests,demo-messy-repo` returning no findings on its own source.
-9. **Limits (say them out loud)**: taint is heuristic and Python-only, fixes are Python-only.
+9. **Limits**: taint is heuristic and Python-only, fixes are Python-only.
